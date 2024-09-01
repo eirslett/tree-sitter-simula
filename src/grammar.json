@@ -552,23 +552,6 @@
         }
       }
     },
-    "type": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 1,
-        "content": {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "type",
-            "flags": "i"
-          },
-          "named": false,
-          "value": "type"
-        }
-      }
-    },
     "integer": {
       "type": "TOKEN",
       "content": {

@@ -182,7 +182,6 @@ module.exports = grammar({
     ref_expression: ($) =>
       seq($.ref, "(", field("class_name", $.identifier), ")"),
     ref: ($) => tok("ref"),
-    type: ($) => tok("type"),
     integer: ($) => tok("integer"),
     real: ($) => tok("real"),
     long: ($) => tok("long"),
