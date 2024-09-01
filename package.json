@@ -6,11 +6,9 @@
   "types": "bindings/node",
   "scripts": {
     "install": "node-gyp-build",
-    "generate": "tree-sitter generate",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
-    "test:node": "node --test bindings/node/*_test.js",
-    "test:grammar": "tree-sitter test"
+    "test": "node --test bindings/node/*_test.js"
   },
   "author": "Eirik Sletteberg",
   "license": "MIT",
