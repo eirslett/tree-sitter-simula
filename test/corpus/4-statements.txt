@@ -1,0 +1,60 @@
+======
+Statement with label
+======
+begin
+  fanfare:
+  outtext("TADA");
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (label_declaration
+      (identifier))
+    (procedure_statement
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Dummy statement with label
+======
+begin
+  DoSomething;
+  John:
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      (identifier))
+    (label_declaration
+      (identifier))
+    (end)))
+
+======
+Several dummy labels
+======
+begin
+  DoSomething;
+  A:
+  B:
+  C:
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      (identifier))
+    (label_declaration
+      (identifier))
+    (label_declaration
+      (identifier))
+    (label_declaration
+      (identifier))
+    (end)))

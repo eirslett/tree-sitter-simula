@@ -1,0 +1,42 @@
+======
+Processor directives
+======
+% first directive here
+begin
+% second directive here
+end
+------
+(source_file
+      (first_directive)
+      (block
+        (begin)
+        (directive)
+        (end)))
+======
+Processor directives cannot have anything else before on the same line
+:error
+======
+begin
+    outimage; % directive is not allowed
+end
+------
+(source_file
+      (block
+        (begin)
+        (outimage)
+        (end)))
+
+======
+Several directives on the top
+======
+% first directive here
+% second directive here
+begin
+end
+------
+(source_file
+      (first_directive)
+      (first_directive)
+      (block
+        (begin)
+        (end)))

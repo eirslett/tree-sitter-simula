@@ -1,0 +1,126 @@
+======
+Simple if-else expression
+======
+begin
+    text A = if true then "Yes" else "No";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (text))
+      name: (identifier)
+      value: (conditional_statement
+        (if)
+        condition: (boolean_literal)
+        (then)
+        then: (string_literal)
+        (else)
+        else: (string_literal)))
+    (end)))
+
+======
+Simple if-else statement
+======
+begin
+    if true then
+        outtext("yes")
+    else
+        outtext("nope")
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (boolean_literal)
+      (then)
+      then: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal))
+      (else)
+      else: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal)))
+    (end)))
+
+======
+Then-clause can be empty
+======
+begin
+    if true then
+    else
+        outtext("nope")
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (boolean_literal)
+      (then)
+      (else)
+      else: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal)))
+    (end)))
+
+======
+Check from S-PORT
+======
+begin
+if e<0 then begin n:= true; e:= -e end;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (less_than
+        lhs: (identifier)
+        rhs: (number_literal))
+      (then)
+      then: (block
+        (begin)
+        (value_assignment
+          lhs: (identifier)
+          rhs: (boolean_literal))
+        (value_assignment
+          lhs: (identifier)
+          rhs: (negative
+            (identifier)))
+        (end)))
+    (end)))
+
+======
+Precedence with assignment inside if
+======
+begin
+  IF OBS = 1 THEN MIN := MAX := V
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (equal
+        lhs: (identifier)
+        rhs: (number_literal))
+      (then)
+      then: (value_assignment
+        lhs: (identifier)
+        rhs: (value_assignment
+          lhs: (identifier)
+          rhs: (identifier))))
+    (end)))

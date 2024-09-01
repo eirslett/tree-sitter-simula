@@ -1,0 +1,106 @@
+======
+Simple activation statement
+======
+begin
+    activate Spaceship
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier))
+    (end)))
+
+======
+Simple activation with before
+======
+begin
+    activate Power before Engine
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier)
+      (before)
+      before: (identifier))
+    (end)))
+
+======
+Simple activation with after
+======
+begin
+    activate Alarm after Fire
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier)
+      (after)
+      after: (identifier))
+    (end)))
+
+======
+Activation statement with delay
+======
+begin
+    activate Notification delay 6.5
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier)
+      (delay)
+      delay: (number_literal))
+    (end)))
+
+======
+Activation statement with delay and prior
+======
+begin
+    activate Music delay 6.5 prior
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier)
+      (delay)
+      delay: (number_literal)
+      (prior))
+    (end)))
+
+======
+Activation at
+======
+begin
+    activate NightMode at 23
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (activation_statement
+      (activate)
+      target: (identifier)
+      (at)
+      at: (number_literal))
+    (end)))

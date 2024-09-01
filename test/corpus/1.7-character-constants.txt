@@ -1,0 +1,71 @@
+======
+Simple character
+======
+begin
+  character C = 'H';
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (character))
+      (identifier)
+      (character_literal))
+    (end)))
+
+======
+Character with ISO code
+======
+begin
+  character C = '!111!';
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (character))
+      (identifier)
+      (character_literal))
+    (end)))
+
+======
+Non-ASCII character is allowed
+======
+begin
+  character C = 'Æ';
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (character))
+      (identifier)
+      (character_literal))
+    (end)))
+
+======
+Edge-case: the single quote
+======
+begin
+  character C = ''';
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (character))
+      (identifier)
+      (character_literal))
+    (end)))

@@ -1,0 +1,12 @@
+======
+End with whitespace after semicolon
+======
+begin
+end;
+
+
+------
+(source_file
+    (block
+        (begin)
+        (end)))

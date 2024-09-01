@@ -1,0 +1,51 @@
+======
+Simple variable
+======
+begin
+    A := B;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (identifier))
+    (end)))
+
+======
+Variable with remote identifier
+======
+begin
+    A := B.C;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (remote_identifier
+        target: (identifier)
+        property: (identifier)))
+    (end)))
+
+======
+Subscripted variable
+======
+begin
+    A(1) := 1;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (procedure_statement
+        procedure: (identifier)
+        argument: (number_literal))
+      rhs: (number_literal))
+    (end)))

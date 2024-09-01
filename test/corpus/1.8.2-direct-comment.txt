@@ -1,0 +1,85 @@
+======
+Empty block comment, shorthand
+======
+begin
+    !;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+
+======
+Empty block comment, keyword
+======
+begin
+    comment;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+
+
+======
+Simple block comment, shorthand
+======
+begin
+    ! def ;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+
+======
+Simple block comment, keyword
+======
+begin
+    comment abc;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+
+======
+Multi-line block comment, shorthand
+======
+begin
+    !
+        abc
+        def
+    ;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+
+======
+Multi-line block comment, keyword
+======
+begin
+    comment
+        abc
+        def
+    ;
+end
+------
+(source_file
+      (block
+        (begin)
+        (comment)
+        (end)))
+

@@ -1,0 +1,144 @@
+======
+Simple for-statement
+======
+begin
+    integer a;
+    for a := 1 step 1 until 10 do outtext("yes")
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier))
+    (for_statement
+      (for)
+      variable: (identifier)
+      start: (number_literal)
+      (step)
+      step: (number_literal)
+      (until)
+      until: (number_literal)
+      action: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal)))
+    (end)))
+
+======
+For-loop with empty body
+======
+begin
+    integer a;
+    for a := 1 step 1 until 10 do
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier))
+    (for_statement
+      (for)
+      variable: (identifier)
+      start: (number_literal)
+      (step)
+      step: (number_literal)
+      (until)
+      until: (number_literal))
+    (end)))
+
+======
+Example from Simula textbook
+======
+begin
+    for Count:=1 step 1 until Length do Contents(Count):-Blanks(Width)
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (for_statement
+      (for)
+      variable: (identifier)
+      start: (number_literal)
+      (step)
+      step: (number_literal)
+      (until)
+      until: (identifier)
+      action: (reference_assignment
+        lhs: (procedure_statement
+          procedure: (identifier)
+          argument: (identifier))
+        rhs: (procedure_statement
+          procedure: (identifier)
+          argument: (identifier))))
+    (end)))
+
+======
+Example from S-PORT
+======
+begin
+  for ch:=inchar while ch ne '}' do
+  begin setpos(pos-1);
+        load;
+        activate new car(r,towns.first
+                  qua town.find(t.strip),inreal);
+        scan;
+  end ;
+  scan;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (for_statement
+      (for)
+      variable: (identifier)
+      (identifier)
+      (while)
+      (not_equal
+        lhs: (identifier)
+        (ne)
+        rhs: (character_literal))
+      action: (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (subtraction
+            lhs: (identifier)
+            rhs: (number_literal)))
+        (procedure_statement
+          procedure: (identifier))
+        (activation_statement
+          (activate)
+          target: (object_generator
+            (new)
+            name: (identifier)
+            argument: (identifier)
+            argument: (procedure_statement
+              procedure: (remote_identifier
+                target: (qualified_object
+                  target: (remote_identifier
+                    target: (identifier)
+                    property: (identifier))
+                  (qua)
+                  name: (identifier))
+                property: (identifier))
+              argument: (remote_identifier
+                target: (identifier)
+                property: (identifier)))
+            argument: (identifier)))
+        (procedure_statement
+          procedure: (identifier))
+        (end)))
+    (procedure_statement
+      procedure: (identifier))
+    (end)))

@@ -1,0 +1,60 @@
+======
+Numbers
+======
+begin
+    a := 0;
+    a := -1;
+    a := 2&1;
+    a := 2.0&+1;
+    a := .2&2;
+    a := 20.0;
+    a := 200&-1;
+    a := 2.345_678&&0;
+    a := 2R1010;
+    a := 16RFFFE;
+    a := 8r76501;
+    a := 16R000a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (negative
+        (number_literal)))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (value_assignment
+      (identifier)
+      (number_literal))
+    (end)))

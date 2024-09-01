@@ -1,0 +1,98 @@
+=====
+Value assignment
+=====
+begin
+    integer a, b;
+    a := 1;
+    b := a;
+end
+-----
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier)
+      name: (identifier))
+    (value_assignment
+      lhs: (identifier)
+      rhs: (number_literal))
+    (value_assignment
+      lhs: (identifier)
+      rhs: (identifier))
+    (end)))
+
+======
+Chained value assignment
+======
+begin
+    a := b := 2;
+end
+-----
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (value_assignment
+        lhs: (identifier)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Reference assignment
+======
+begin
+    a :- "Kiwi";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (string_literal))
+    (end)))
+
+======
+Chained reference assignment
+======
+begin
+    a :- b :- "Kiwi";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (reference_assignment
+        lhs: (identifier)
+        rhs: (string_literal)))
+    (end)))
+
+======
+Assignment on object
+======
+begin
+    input.sub(7,3) := "Tom";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (procedure_statement
+        procedure: (remote_identifier
+          target: (identifier)
+          property: (identifier))
+        argument: (number_literal)
+        argument: (number_literal))
+      rhs: (string_literal))
+    (end)))

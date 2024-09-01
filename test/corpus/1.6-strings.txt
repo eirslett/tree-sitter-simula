@@ -1,0 +1,198 @@
+======
+Simple string
+======
+begin
+  text str = "Hello";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Shorthand comment in string should not be regarded as a comment
+======
+begin
+  text str = "!test;";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Block comment in string should not be regarded as a comment
+======
+begin
+  text str = "comment test;";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Several strings joined together
+======
+begin
+  text str = "Hello" " " "World";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+String with escape character
+======
+begin
+  text str = "Hello with escaped"" quote";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+String with ISO code
+======
+begin
+  text str = "Hello with !111! escaped !222! codes";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+One exclamation mark
+======
+begin
+  text str = "!2";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Examples from the spec
+======
+begin
+  text str;
+  str :- "Ab" "cde";
+  str :- "AB" "CDE";
+  str :- "!2!ABCDE!3!";
+  str :- "!2" "!ABCDE!" "3!";
+  str :- "AB"" C""DE";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier))
+    (reference_assignment
+      (identifier)
+      (string_literal))
+    (reference_assignment
+      (identifier)
+      (string_literal))
+    (reference_assignment
+      (identifier)
+      (string_literal))
+    (reference_assignment
+      (identifier)
+      (string_literal))
+    (reference_assignment
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Parser upports non-ASCII characters
+======
+begin
+  text str = "ÆØÅ";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Supports notext
+======
+begin
+  text str = notext;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      (type_expression
+        (text))
+      (identifier)
+      (notext))
+    (end)))

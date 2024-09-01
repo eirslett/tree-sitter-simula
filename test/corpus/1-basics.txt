@@ -1,0 +1,8 @@
+======
+Basics: keywords are case-insensitive
+======
+BEGIN
+    Begin
+    end
+eND
+------

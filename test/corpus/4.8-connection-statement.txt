@@ -1,0 +1,134 @@
+======
+Simple connection statement
+======
+begin
+    inspect SysIn do
+    begin
+        InLine;
+    end
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (do)
+      action: (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier))
+        (end)))
+    (end)))
+
+======
+Connection statement with branches
+======
+begin
+    inspect B
+        when B2 do S2
+        when B3 do S3
+        otherwise S4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (procedure_statement
+          procedure: (identifier)))
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (procedure_statement
+          procedure: (identifier)))
+      (otherwise_clause
+        (otherwise)
+        action: (procedure_statement
+          procedure: (identifier))))
+    (end)))
+
+======
+Nested connection statement with branches (example from spec)
+======
+begin
+    inspect A when A1 do
+        inspect B when B1 do S1
+                  when B2 do S2
+                  otherwise S3;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (connection_statement
+          (inspect)
+          target: (identifier)
+          (when_clause
+            (when)
+            type: (identifier)
+            (do)
+            action: (procedure_statement
+              procedure: (identifier)))
+          (when_clause
+            (when)
+            type: (identifier)
+            (do)
+            action: (procedure_statement
+              procedure: (identifier)))
+          (otherwise_clause
+            (otherwise)
+            action: (procedure_statement
+              procedure: (identifier))))))
+    (end)))
+
+======
+Connection statement with Otherwise clause
+======
+begin
+    Inspect A do
+    Begin Goto L End
+    Otherwise L: found_error := false;
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (do)
+      action: (block
+        (begin)
+        (goto_statement
+          (goto)
+          label: (procedure_statement
+            procedure: (identifier)))
+        (end))
+      (otherwise_clause
+        (otherwise)
+        action: (label_declaration
+          (identifier))
+        action: (value_assignment
+          lhs: (identifier)
+          rhs: (boolean_literal))))
+    (end)))

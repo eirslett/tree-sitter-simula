@@ -1,0 +1,33 @@
+======
+Goto
+======
+begin
+    goto dentist;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (goto_statement
+      (goto)
+      (procedure_statement
+        (identifier)))
+    (end)))
+
+======
+Go to
+======
+begin
+    go to nightclub;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (goto_statement
+      (goto)
+      (procedure_statement
+        (identifier)))
+    (end)))

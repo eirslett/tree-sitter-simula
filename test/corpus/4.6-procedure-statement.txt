@@ -1,0 +1,107 @@
+======
+Procedure statement, no arguments
+======
+begin
+  OutImage;
+end;
+---
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      (identifier))
+    (end)))
+
+======
+Procedure statement, with arguments
+======
+begin
+  OutInt(3, 1);
+end;
+---
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (identifier)
+      argument: (number_literal)
+      argument: (number_literal))
+    (end)))
+
+======
+Nested procedure statement
+======
+begin
+  OutInt(3, Hello(1));
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (identifier)
+      argument: (number_literal)
+      argument: (procedure_statement
+        procedure: (identifier)
+        argument: (number_literal)))
+    (end)))
+
+======
+Procedure statement on object
+======
+begin
+  a.b(1);
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (remote_identifier
+        target: (identifier)
+        property: (identifier))
+      argument: (number_literal))
+    (end)))
+
+======
+Call procedure on object returned from procedure
+======
+begin
+  A.someprocedure(1).getint
+end;
+---
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (remote_identifier
+        target: (procedure_statement
+          procedure: (remote_identifier
+            target: (identifier)
+            property: (identifier))
+          argument: (number_literal))
+        property: (identifier)))
+    (end)))
+
+======
+Paranthesized procedure statement
+======
+begin
+  (t1).putchar ('3');
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (remote_identifier
+        target: (identifier)
+        property: (identifier))
+      argument: (character_literal))
+    (end)))

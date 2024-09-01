@@ -1,0 +1,352 @@
+======
+Simple class declaration
+======
+begin
+    class Lab;
+         begin
+         end
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      (block
+        (begin)
+        (end)))
+    (end)))
+
+======
+Inheritance: simplified example from Simula textbook
+======
+begin
+    class Print_Block(Width,Length);integer Width, Length;
+    begin
+        ref(Print_Block)Next;
+    end--of--Print_Block;
+
+    Print_Block class Title_Block(Title);text Title;
+    begin
+    end--of--Title_Block;
+
+    Print_Block class Text_Block;
+    begin
+
+    end--of--Text_Block;
+
+    Print_Block class Diagram(Title); text Title;
+    begin
+        Contents(1):=Title
+    end--of--Diagram;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      parameter: (identifier)
+      parameter: (identifier)
+      specification: (specification
+        (type_expression
+          (integer))
+        (identifier)
+        (identifier))
+      (block
+        (begin)
+        (variable_declaration
+          type: (type_expression
+            (ref_expression
+              (ref)
+              class_name: (identifier)))
+          name: (identifier))
+        (end
+          (end_comment))))
+    (class_declaration
+      base: (identifier)
+      (class)
+      name: (identifier)
+      parameter: (identifier)
+      specification: (specification
+        (type_expression
+          (text))
+        (identifier))
+      (block
+        (begin)
+        (end
+          (end_comment))))
+    (class_declaration
+      base: (identifier)
+      (class)
+      name: (identifier)
+      (block
+        (begin)
+        (end
+          (end_comment))))
+    (class_declaration
+      base: (identifier)
+      (class)
+      name: (identifier)
+      parameter: (identifier)
+      specification: (specification
+        (type_expression
+          (text))
+        (identifier))
+      (block
+        (begin)
+        (value_assignment
+          lhs: (procedure_statement
+            procedure: (identifier)
+            argument: (number_literal))
+          rhs: (identifier))
+        (end
+          (end_comment))))
+    (end)))
+
+======
+Class with no body
+======
+begin
+    Class D;;
+    outtext("it works")
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      (identifier))
+    (procedure_statement
+      (identifier)
+      (string_literal))
+    (end)))
+
+======
+Class with other stuff but no body
+======
+begin
+    Class D (t) ; value t ; text t ;;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      parameter: (identifier)
+      (value)
+      (identifier)
+      specification: (specification
+        (type_expression
+          (text))
+        (identifier)))
+    (end)))
+
+======
+Virtual block - single item
+======
+begin
+    class Prefix;
+        virtual: text procedure Banner;
+    begin
+        OutText("It works");
+    end++of++Prefix;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      (virtual)
+      (virtual_spec
+        (specification
+          (type_expression
+            (text))
+          (procedure)
+          (identifier)))
+      (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (string_literal))
+        (end
+          (end_comment))))
+    (end)))
+
+======
+Virtual block - multiple procedures
+======
+begin
+    class Prefix;
+        virtual: text procedure Banner; label Dest;
+    begin
+        OutText("It works");
+    end++of++Prefix;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      (virtual)
+      (virtual_spec
+        (specification
+          (type_expression
+            (text))
+          (procedure)
+          (identifier)))
+      (virtual_spec
+        (specification
+          (label)
+          (identifier)))
+      (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (string_literal))
+        (end
+          (end_comment))))
+    (end)))
+
+======
+Class protection - example from the Simula textbook
+======
+begin
+    class Counter;
+        protected Tally;
+    begin
+        integer Tally;
+        procedure Increment; Tally := Tally + 1;
+        procedure Decrement; Tally := Tally - 1;
+        integer procedure Total; Total := Tally;
+    end++of++Counter;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      (protection_specification
+        (protected)
+        (identifier))
+      (block
+        (begin)
+        (variable_declaration
+          type: (type_expression
+            (integer))
+          name: (identifier))
+        (procedure_declaration
+          (procedure)
+          name: (identifier)
+          (value_assignment
+            lhs: (identifier)
+            rhs: (addition
+              lhs: (identifier)
+              rhs: (number_literal))))
+        (procedure_declaration
+          (procedure)
+          name: (identifier)
+          (value_assignment
+            lhs: (identifier)
+            rhs: (subtraction
+              lhs: (identifier)
+              rhs: (number_literal))))
+        (procedure_declaration
+          return_type: (type_expression
+            (integer))
+          (procedure)
+          name: (identifier)
+          (value_assignment
+            lhs: (identifier)
+            rhs: (identifier)))
+        (end
+          (end_comment))))
+    (end)))
+
+======
+Declaration of virtual procedures
+======
+begin
+   class A; virtual: ref(File) procedure myFile is ref(File) procedure actual(i,j); integer i,j;;
+                     procedure virt2 is procedure act2(j); integer j;;
+                     integer procedure virt3 is procedure act3;;
+                     procedure virt4 is procedure act4;;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (class_declaration
+      (class)
+      name: (identifier)
+      (virtual)
+      (virtual_spec
+        (type_expression
+          (ref_expression
+            (ref)
+            class_name: (identifier)))
+        (procedure)
+        name: (identifier)
+        (is)
+        (procedure_declaration
+          return_type: (type_expression
+            (ref_expression
+              (ref)
+              class_name: (identifier)))
+          (procedure)
+          name: (identifier)
+          parameter: (identifier)
+          parameter: (identifier)
+          specification: (specification
+            (type_expression
+              (integer))
+            (identifier)
+            (identifier))))
+      (virtual_spec
+        (procedure)
+        name: (identifier)
+        (is)
+        (procedure_declaration
+          (procedure)
+          name: (identifier)
+          parameter: (identifier)
+          specification: (specification
+            (type_expression
+              (integer))
+            (identifier))))
+      (virtual_spec
+        (type_expression
+          (integer))
+        (procedure)
+        name: (identifier)
+        (is)
+        (procedure_declaration
+          (procedure)
+          name: (identifier)))
+      (virtual_spec
+        (procedure)
+        name: (identifier)
+        (is)
+        (procedure_declaration
+          (procedure)
+          name: (identifier))))
+    (end)))

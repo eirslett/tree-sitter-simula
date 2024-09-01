@@ -1,0 +1,45 @@
+======
+Prefixed block
+======
+begin
+    myprefix begin
+        outimage;
+    end
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      class: (procedure_statement
+        procedure: (identifier))
+      (begin)
+      (procedure_statement
+        procedure: (identifier))
+      (end))
+    (end)))
+
+======
+Prefixed block with arguments
+======
+begin
+    myprefix(1, 2) begin
+        outimage;
+    end
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      class: (procedure_statement
+        procedure: (identifier)
+        argument: (number_literal)
+        argument: (number_literal))
+      (begin)
+      (procedure_statement
+        procedure: (identifier))
+      (end))
+    (end)))

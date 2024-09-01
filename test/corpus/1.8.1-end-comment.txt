@@ -1,0 +1,338 @@
+======
+Trivial
+(no end comment matched)
+======
+begin end
+------
+
+(source_file
+  (block
+    (begin)
+    (end)))
+
+======
+Trivial with semicolon after end
+(not counted as end comment)
+======
+begin end;
+------
+
+(source_file
+  (block
+    (begin)
+    (end)))
+
+======
+Trivial with semicolon inside block
+(not counted as end comment)
+======
+begin ; end
+------
+
+(source_file
+  (block
+    (begin)
+    (end)))
+
+======
+Trivial with semicolon inside and outside block
+(not counted as end comment)
+======
+begin ; end;
+------
+
+(source_file
+  (block
+    (begin)
+    (end)))
+
+======
+Trivial with procedure call
+(not counted as end comment)
+======
+begin
+    outimage
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_statement
+      procedure: (identifier))
+    (end)))
+
+======
+Nested blocks - comment terminated by "end" keyword
+(not counted as end comment)
+======
+begin begin end end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      (begin)
+      (end))
+    (end)))
+
+======
+A simple end-comment in a nested block
+======
+begin
+    begin
+
+    end if
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      (begin)
+      (end
+        (end_comment)))
+    (end)))
+
+======
+End-comment should stop at the "else" keyword
+(not counted as end comment)
+======
+begin
+    if true then
+    begin
+        outtext("true");
+    end
+    else
+        outtext("false");
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (boolean_literal)
+      (then)
+      then: (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (string_literal))
+        (end))
+      (else)
+      else: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal)))
+    (end)))
+
+======
+End-comment should stop at the "else" keyword - now with comment
+======
+begin
+    if true then
+    begin
+        outtext("true");
+    end***test comment***else
+        outtext("false");
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (conditional_statement
+      (if)
+      condition: (boolean_literal)
+      (then)
+      then: (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (string_literal))
+        (end
+          (end_comment)))
+      (else)
+      else: (procedure_statement
+        procedure: (identifier)
+        argument: (string_literal)))
+    (end)))
+
+======
+End-comment should stop at the "when" keyword
+(not counted as end comment)
+======
+begin
+    inspect B
+        when B1 do begin outimage; end
+        when B2 do S2
+        otherwise S3;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (block
+          (begin)
+          (procedure_statement
+            procedure: (identifier))
+          (end)))
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (procedure_statement
+          procedure: (identifier)))
+      (otherwise_clause
+        (otherwise)
+        action: (procedure_statement
+          procedure: (identifier))))
+    (end)))
+
+======
+End-comment should stop at the "otherwise" keyword
+(not counted as end comment)
+======
+begin
+    inspect B
+        when B1 do begin outimage; end
+        otherwise S3;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (connection_statement
+      (inspect)
+      target: (identifier)
+      (when_clause
+        (when)
+        type: (identifier)
+        (do)
+        action: (block
+          (begin)
+          (procedure_statement
+            procedure: (identifier))
+          (end)))
+      (otherwise_clause
+        (otherwise)
+        action: (procedure_statement
+          procedure: (identifier))))
+    (end)))
+
+======
+End-comment at the end of the file
+======
+begin
+end-of
+-file
+------
+
+(source_file
+  (block
+    (begin)
+    (end
+      (end_comment))))
+
+======
+End-comment, the letter o could be part of "otherwise"
+======
+begin
+end-otherwis;
+------
+
+(source_file
+  (block
+    (begin)
+    (end
+      (end_comment))))
+
+======
+End-comment, shorter
+======
+begin
+end-x;
+------
+
+(source_file
+  (block
+    (begin)
+    (end
+      (end_comment))))
+
+======
+End-comment terminated by semicolon, with procedure call
+(not counted as end comment)
+======
+begin
+    begin
+    end;
+    outtext("hei");
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      (begin)
+      (end))
+    (procedure_statement
+      procedure: (identifier)
+      argument: (string_literal))
+    (end)))
+
+======
+End-comment terminated by semicolon on the next line
+(will not have the outtext procedure because it's now a comment)
+======
+begin
+    begin
+    end
+    outtext("hei");
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (block
+      (begin)
+      (end
+        (end_comment)))
+    (end)))
+
+======
+Interesting case
+the "end" in "weekend" should be part of the comment.
+======
+begin
+    procedure Have_weekend;
+    begin
+    end Have_weekend;
+  end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_declaration
+      (procedure)
+      name: (identifier)
+      (block
+        (begin)
+        (end
+          (end_comment))))
+    (end)))

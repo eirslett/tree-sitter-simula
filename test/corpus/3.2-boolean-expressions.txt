@@ -1,0 +1,437 @@
+======
+True
+======
+begin
+    a := true;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      (identifier)
+      (boolean_literal))
+    (end)))
+
+======
+False
+======
+begin
+    a := false;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      (identifier)
+      (boolean_literal))
+    (end)))
+
+======
+Less-than
+======
+begin
+    boolean A = 1 < 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (less_than
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Less-than (alternative representation)
+======
+begin
+    boolean A = 1 lt 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (less_than
+        lhs: (number_literal)
+        (lt)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Less than or equal
+======
+begin
+    boolean A = 1 <= 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (less_than_or_equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Less than or equal (alternative representation)
+======
+begin
+    boolean A = 1 le 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (less_than_or_equal
+        lhs: (number_literal)
+        (le)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Equal
+======
+begin
+    boolean A = 1 = 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Equal (alternative representation)
+======
+begin
+    boolean A = 1 eq 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (equal
+        lhs: (number_literal)
+        (eq)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Greater than or equal
+======
+begin
+    boolean A = 1 >= 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (greater_than_or_equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Greater than or equal (alternative representation)
+======
+begin
+    boolean A = 1 ge 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (greater_than_or_equal
+        lhs: (number_literal)
+        (ge)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Greater than
+======
+begin
+    boolean A = 1 > 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (greater_than
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Greater than (alternative representation)
+======
+begin
+    boolean A = 1 gt 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (greater_than
+        lhs: (number_literal)
+        (gt)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Not equal
+======
+begin
+    boolean A = 1 <> 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (not_equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Not equal (alternative representation)
+======
+begin
+    boolean A = 1 ne 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (not_equal
+        lhs: (number_literal)
+        (ne)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Reference equal
+======
+begin
+    boolean A = 1 == 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (ref_equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Reference not equal
+======
+begin
+    boolean A = 1 =/= 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (ref_not_equal
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+And
+======
+begin
+    boolean A = 1 < 2 and 3 < 4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (and_expression
+        lhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))
+        (and)
+        rhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))
+
+======
+Or
+======
+begin
+    boolean A = 1 < 2 or 3 < 4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (or_expression
+        lhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))
+        (or)
+        rhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))
+
+======
+And then
+======
+begin
+    boolean A = 1 < 2 and then 3 < 4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (and_expression
+        lhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))
+        (and)
+        extra: (then)
+        rhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))
+
+======
+Or else
+======
+begin
+    boolean A = 1 < 2 or else 3 < 4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier)
+      value: (or_expression
+        lhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))
+        (or)
+        extra: (else)
+        rhs: (less_than
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))
+
+======
+Not
+======
+begin
+    tall := not true;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      (identifier)
+      (not_expression
+        (not)
+        (boolean_literal)))
+    (end)))

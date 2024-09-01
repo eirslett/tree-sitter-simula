@@ -1,0 +1,115 @@
+======
+Addition
+======
+begin
+    a := 1 + 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (addition
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Subtraction
+======
+begin
+    a := 1 - 2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (subtraction
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Multiplication
+======
+begin
+    a := 7 * 8;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (multiplication
+        lhs: (number_literal)
+        rhs: (number_literal)))
+    (end)))
+
+======
+Test arithmetic precedence
+======
+begin
+    a := 1 * 2 + 3 / 4;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (addition
+        lhs: (multiplication
+          lhs: (number_literal)
+          rhs: (number_literal))
+        rhs: (division
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))
+
+======
+Subtraction without paranthesis
+======
+begin
+    a := 8 - 2 - 1;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (subtraction
+        lhs: (subtraction
+          lhs: (number_literal)
+          rhs: (number_literal))
+        rhs: (number_literal)))
+    (end)))
+
+======
+Subtraction with paranthesis
+======
+begin
+    a := 8 - (2 - 1);
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (subtraction
+        lhs: (number_literal)
+        rhs: (subtraction
+          lhs: (number_literal)
+          rhs: (number_literal))))
+    (end)))

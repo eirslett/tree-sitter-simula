@@ -1,0 +1,161 @@
+======
+Procedure declaration
+======
+begin
+  procedure hello;
+  begin
+    OutText("Hello, world!");
+  end;
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_declaration
+      (procedure)
+      name: (identifier)
+      (block
+        (begin)
+        (procedure_statement
+          procedure: (identifier)
+          argument: (string_literal))
+        (end)))
+    (end)))
+
+======
+Procedure with return type
+======
+begin
+    integer procedure hello(a, b);
+    integer a, b;
+    begin
+        hello := a + b + 1;
+    end;
+end;
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_declaration
+      return_type: (type_expression
+        (integer))
+      (procedure)
+      name: (identifier)
+      parameter: (identifier)
+      parameter: (identifier)
+      specification: (specification
+        (type_expression
+          (integer))
+        (identifier)
+        (identifier))
+      (block
+        (begin)
+        (value_assignment
+          lhs: (identifier)
+          rhs: (addition
+            lhs: (addition
+              lhs: (identifier)
+              rhs: (identifier))
+            rhs: (number_literal)))
+        (end)))
+    (end)))
+
+======
+procedure with name and value parameters
+======
+begin
+ procedure Use_Name(Val1, Val2); name Val2; integer Val1, Val2;
+ begin
+ end
+ end
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_declaration
+      (procedure)
+      name: (identifier)
+      parameter: (identifier)
+      parameter: (identifier)
+      (name)
+      mode: (identifier)
+      specification: (specification
+        (type_expression
+          (integer))
+        (identifier)
+        (identifier))
+      (block
+        (begin)
+        (end)))
+    (end)))
+
+======
+Noop-procedure edge-case
+======
+begin
+  REAL PROCEDURE rp ; ;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (procedure_declaration
+      return_type: (type_expression
+        (real))
+      (procedure)
+      name: (identifier))
+    (end)))
+
+======
+Procedure with procedure as input (example from S-PORT)
+======
+Procedure P (F, a); name F, a; Procedure F; Boolean a;
+begin
+  Boolean bool;
+  a := not a;
+  if a then P2 (F)
+  else F;
+end;
+------
+
+(source_file
+  (procedure_declaration
+    (procedure)
+    name: (identifier)
+    parameter: (identifier)
+    parameter: (identifier)
+    (name)
+    mode: (identifier)
+    mode: (identifier)
+    specification: (specification
+      (procedure)
+      (identifier))
+    specification: (specification
+      (type_expression
+        (boolean))
+      (identifier))
+    (block
+      (begin)
+      (variable_declaration
+        type: (type_expression
+          (boolean))
+        name: (identifier))
+      (value_assignment
+        lhs: (identifier)
+        rhs: (not_expression
+          (not)
+          rhs: (identifier)))
+      (conditional_statement
+        (if)
+        condition: (identifier)
+        (then)
+        then: (procedure_statement
+          procedure: (identifier)
+          argument: (identifier))
+        (else)
+        else: (identifier))
+      (end))))

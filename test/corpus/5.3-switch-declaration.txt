@@ -1,0 +1,36 @@
+======
+Switch declaration - example from Simula spec
+======
+begin
+    switch s := s1,s2,q(m), if v>-5 then s3 else s4;
+    switch q := p1,w
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (switch_declaration
+      (switch)
+      name: (identifier)
+      (identifier)
+      (identifier)
+      (procedure_statement
+        procedure: (identifier)
+        argument: (identifier))
+      (conditional_statement
+        (if)
+        condition: (greater_than
+          lhs: (identifier)
+          rhs: (negative
+            (number_literal)))
+        (then)
+        then: (identifier)
+        (else)
+        else: (identifier)))
+    (switch_declaration
+      (switch)
+      name: (identifier)
+      (identifier)
+      (identifier))
+    (end)))

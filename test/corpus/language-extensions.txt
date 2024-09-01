@@ -1,0 +1,35 @@
+======
+Line comment syntax
+======
+begin
+    --comment 1
+    outimage; --comment 2
+    -- comment 3
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (line_comment)
+    (procedure_statement
+      (identifier))
+    (line_comment)
+    (line_comment)
+    (end)))
+
+======
+Identifiers can be any valid Unicode letters
+======
+begin
+    こんにちは := "🥳";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (value_assignment
+      lhs: (identifier)
+      rhs: (string_literal))
+    (end)))

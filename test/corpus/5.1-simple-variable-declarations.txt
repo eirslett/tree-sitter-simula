@@ -1,0 +1,242 @@
+======
+Simple boolean
+======
+begin
+    boolean a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (boolean))
+      name: (identifier))
+    (end)))
+
+======
+Simple character
+======
+begin
+    character a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (character))
+      name: (identifier))
+    (end)))
+
+======
+Simple integer
+======
+begin
+    integer a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier))
+    (end)))
+
+======
+Two integers
+======
+begin
+    integer a, b;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier)
+      name: (identifier))
+    (end)))
+
+======
+Short integer
+======
+begin
+    short integer a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (short)
+        (integer))
+      name: (identifier))
+    (end)))
+
+======
+Short integer with comment
+======
+begin
+    short comment test; integer foo;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (short)
+        (comment)
+        (integer))
+      name: (identifier))
+    (end)))
+
+======
+Simple real
+======
+begin
+    real a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (real))
+      name: (identifier))
+    (end)))
+
+======
+Long real
+======
+begin
+    long real a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (long)
+        (real))
+      name: (identifier))
+    (end)))
+
+======
+Text
+======
+begin
+    text a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (text))
+      name: (identifier))
+    (end)))
+
+======
+Reference (single)
+======
+begin
+    ref (MyClass) a;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (ref_expression
+          (ref)
+          class_name: (identifier)))
+      name: (identifier))
+    (end)))
+
+======
+Reference (multiple)
+======
+begin
+    ref (MyClass) a, b;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (ref_expression
+          (ref)
+          class_name: (identifier)))
+      name: (identifier)
+      name: (identifier))
+    (end)))
+
+======
+Constants
+======
+begin
+    integer a = 1;
+    text b, c = "Hei";
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier)
+      value: (number_literal))
+    (variable_declaration
+      type: (type_expression
+        (text))
+      name: (identifier)
+      name: (identifier)
+      value: (string_literal))
+    (end)))
+
+======
+Multiple value assignments
+======
+begin
+    integer a=1,
+            b=2;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (variable_declaration
+      type: (type_expression
+        (integer))
+      name: (identifier)
+      value: (number_literal)
+      name: (identifier)
+      value: (number_literal))
+    (end)))

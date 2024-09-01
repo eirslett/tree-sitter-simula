@@ -1,0 +1,97 @@
+======
+Simple array
+======
+begin
+    text array Lines(1:60);
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (array_declaration
+      (type_expression
+        (text))
+      (array)
+      (identifier)
+      (number_literal)
+      (number_literal))
+    (end)))
+
+======
+Example 1 from spec
+======
+begin
+    integer array a(2:20); ! 19 elements;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (array_declaration
+      type: (type_expression
+        (integer))
+      (array)
+      name: (identifier)
+      from: (number_literal)
+      to: (number_literal))
+    (comment)
+    (end)))
+
+======
+Example 2 from spec
+======
+begin
+    real array q(-7:if c<0 then 2 else 1); ! 10 or 9 elements;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (array_declaration
+      type: (type_expression
+        (real))
+      (array)
+      name: (identifier)
+      from: (negative
+        (number_literal))
+      to: (conditional_statement
+        (if)
+        condition: (less_than
+          lhs: (identifier)
+          rhs: (number_literal))
+        (then)
+        then: (number_literal)
+        (else)
+        else: (number_literal)))
+    (comment)
+    (end)))
+
+======
+Example 3 from spec
+======
+begin
+    array a,b,c(7:n,2:m), s(-2:10); ! any value of n or m legal;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (array_declaration
+      (array)
+      name: (identifier)
+      name: (identifier)
+      name: (identifier)
+      from: (number_literal)
+      to: (identifier)
+      from: (number_literal)
+      to: (identifier)
+      name: (identifier)
+      from: (negative
+        (number_literal))
+      to: (number_literal))
+    (comment)
+    (end)))

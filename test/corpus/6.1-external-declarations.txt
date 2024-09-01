@@ -1,0 +1,73 @@
+======
+External class declaration
+======
+begin
+    external class b, c;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (external_class_declaration
+      (external)
+      (class)
+      (external_item
+        name: (identifier))
+      (external_item
+        name: (identifier)))
+    (end)))
+
+======
+External procedure declaration
+======
+begin
+    external procedure b, c;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (external_procedure_declaration
+      (external)
+      (procedure)
+      (external_item
+        name: (identifier))
+      (external_item
+        name: (identifier)))
+    (end)))
+
+======
+External procedure declaration with naming
+======
+begin
+      External Simuletta Procedure wNOT="E@UUWNOT" is
+      Short Integer Procedure wNOT(i); short integer i; ;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (external_procedure_declaration
+      (external)
+      kind: (identifier)
+      (procedure)
+      (external_item
+        name: (identifier)
+        external: (string_literal))
+      (is)
+      (procedure_declaration
+        return_type: (type_expression
+          (short)
+          (integer))
+        (procedure)
+        name: (identifier)
+        parameter: (identifier)
+        specification: (specification
+          (type_expression
+            (short)
+            (integer))
+          (identifier))))
+    (end)))

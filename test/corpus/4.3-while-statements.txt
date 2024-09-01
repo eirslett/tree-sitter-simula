@@ -1,0 +1,35 @@
+======
+Simple while
+======
+begin
+    while true do outimage;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (while_statement
+      (while)
+      condition: (boolean_literal)
+      (do)
+      action: (procedure_statement
+        procedure: (identifier)))
+    (end)))
+
+======
+While-statement with no body
+======
+begin
+    while true do;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (while_statement
+      (while)
+      condition: (boolean_literal)
+      (do))
+    (end)))

@@ -1,0 +1,112 @@
+======
+None
+======
+begin
+    o :- none;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (none))
+    (end)))
+
+======
+New object (no parameters)
+======
+begin
+    o :- new MyClass;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (object_generator
+        (new)
+        name: (identifier)))
+    (end)))
+
+======
+New object (with arguments)
+======
+begin
+    o :- new MyClass(1, 2, 3);
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (object_generator
+        (new)
+        name: (identifier)
+        argument: (number_literal)
+        argument: (number_literal)
+        argument: (number_literal)))
+    (end)))
+
+======
+Local object
+======
+begin
+    o :- this Size;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (local_object
+        (this)
+        name: (identifier)))
+    (end)))
+
+======
+Qualified object
+======
+begin
+    o :- MyVar qua MyClass;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (qualified_object
+        target: (identifier)
+        (qua)
+        name: (identifier)))
+    (end)))
+
+======
+Changed qualified object
+======
+begin
+    o :- (a.b) qua MyClass;
+end
+------
+
+(source_file
+  (block
+    (begin)
+    (reference_assignment
+      lhs: (identifier)
+      rhs: (qualified_object
+        target: (remote_identifier
+          target: (identifier)
+          property: (identifier))
+        (qua)
+        name: (identifier)))
+    (end)))
