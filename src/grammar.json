@@ -319,7 +319,8 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "\\p{L}[\\p{L}0-9_]*"
+      "value": "\\p{L}[\\p{L}0-9_]*",
+      "flags": "u"
     },
     "_identifier1": {
       "type": "CHOICE",
