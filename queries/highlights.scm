@@ -1,4 +1,5 @@
 (identifier) @variable
+(type_expression) @type
 
 ; All the kinds of comments
 [
@@ -14,10 +15,6 @@
   ":"
   ","
 ] @punctuation.delimiter
-
-(procedure_statement
-    procedure: (identifier) @function
-)
 
 (string_literal) @string
 (character_literal) @character
@@ -45,14 +42,6 @@
     (procedure)
     (label)
 ] @type.builtin
-
-(ref_expression
-    class_name: (identifier) @class
-)
-(class_declaration
-    (class)
-    class_name: (identifier) @class
-)
 
 [
     "<"
@@ -138,3 +127,70 @@
     (hidden)
     (protected)
 ] @keyword
+
+(object_generator
+        name: (identifier) @class
+)
+(remote_identifier
+          property: (identifier) @property
+)
+(local_object
+    name: (identifier) @variable
+)
+(ref_expression
+    class_name: (identifier) @class
+)
+
+; The problem with annotating this, is that we cannot always
+; distinguish between a variable and a procedure statement.
+; For example "a := b;" b can be either a variable or a procedure statement.
+;(procedure_statement
+;    procedure: (identifier) @function
+;)
+
+(block
+    class:
+        (procedure_statement
+            procedure: (identifier) @class
+        )
+)
+(value_assignment
+    lhs: (identifier) @variable
+)
+(reference_assignment
+    lhs: (identifier) @variable
+)
+(for_statement
+    variable: (identifier) @variable
+)
+(when_clause
+    type: (identifier) @class
+)
+(variable_declaration
+    name: (identifier) @variable
+)
+(array_declaration
+    name: (identifier) @variable
+)
+(procedure_declaration
+    name: (identifier) @function
+    parameter: (identifier) @variable
+)
+(class_declaration
+    class_name: (identifier) @class
+    base: (identifier) @class
+    parameter: (identifier) @variable
+)
+(specification
+    (identifier) @variable
+)
+(protection_specification
+    (identifier) @variable
+)
+(external_class_declaration
+    (external_item
+    name: (identifier) @class)
+)
+(external_procedure_declaration
+    (external_item
+    name: (identifier) @function))

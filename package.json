@@ -39,7 +39,14 @@
   "tree-sitter": [
     {
       "scope": "source.simula",
-      "injection-regex": "^simula$"
+      "injection-regex": "^simula$",
+      "file-types": [
+        "sim"
+      ],
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm",
+      "injections": "queries/injections.scm",
+      "tags": "queries/tags.scm"
     }
   ]
 }
