@@ -6,3 +6,10 @@ BEGIN
     end
 eND
 ------
+(source_file
+      (block
+        (begin)
+        (block
+          (begin)
+          (end))
+        (end)))

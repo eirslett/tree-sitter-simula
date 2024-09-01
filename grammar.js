@@ -40,19 +40,12 @@ const PREC = {
 
 // Borrowed from tree-sitter-fortran
 function caseInsensitive(keyword, aliasAsWord = true) {
-  let result = new RegExp(keyword, "i");
-
-  /*
-  let result = new RegExp(
-    keyword
-      .split("")
-      .map((l) => (l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l))
-      .join("")
-  );
-  */
-
-  if (aliasAsWord) result = alias(result, keyword);
-  return result;
+  const result = new RegExp(keyword, "i");
+  if (aliasAsWord) {
+    return alias(result, keyword);
+  } else {
+    return result;
+  }
 }
 
 function tok(keyword, aliasAsWord = true) {
@@ -128,7 +121,7 @@ module.exports = grammar({
     // identifier: ($) => /[A-z][A-z0-9_]*/,
     // But actually, let's be a bit more lenient and allow all Unicode words like イスクリーム123
     // (and Æ Ø Å, since the language was developed in Norway.)
-    identifier: ($) => /\p{L}[\p{L}0-9_]*/,
+    identifier: ($) => /\p{L}[\p{L}0-9_]*/u,
     _identifier1: ($) => choice($.identifier, $.remote_identifier),
 
     // 1.5 Numbers
@@ -790,7 +783,7 @@ module.exports = grammar({
           tok("switch")
         ),
         */
-        
+
         // Here is the correct EBNF:
         // See: https://github.com/portablesimula/github.io/blob/master/doc/Simula%20Standard%20-%20Errata.pdf
         choice(
