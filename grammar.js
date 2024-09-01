@@ -57,7 +57,7 @@ function listOf(separator, rule) {
 }
 
 module.exports = grammar({
-  name: "Simula",
+  name: "simula",
   externals: ($) => [$.end_comment, $.error_sentinel],
   extras: ($) => [/\s+/, $.comment, $.line_comment, $.directive],
   word: ($) => $.identifier,

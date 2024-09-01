@@ -2,10 +2,10 @@ prefix=@PREFIX@
 libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
 
-Name: tree-sitter-Simula
+Name: tree-sitter-simula
 Description: Simula grammar for tree-sitter
 URL: @URL@
 Version: @VERSION@
 Requires: @REQUIRES@
-Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-Simula
+Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-simula
 Cflags: -I${includedir}

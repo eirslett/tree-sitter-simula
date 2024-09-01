@@ -1,5 +1,5 @@
 {
-  "name": "Simula",
+  "name": "simula",
   "word": "identifier",
   "rules": {
     "source_file": {

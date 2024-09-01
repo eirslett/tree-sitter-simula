@@ -4,7 +4,7 @@ endif
 
 VERSION := 0.0.1
 
-LANGUAGE_NAME := tree-sitter-Simula
+LANGUAGE_NAME := tree-sitter-simula
 
 # repository
 SRC_DIR := src

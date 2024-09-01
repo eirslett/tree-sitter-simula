@@ -7,16 +7,16 @@ enum TokenType {
     ERROR_SENTINEL
 };
 
-void *tree_sitter_Simula_external_scanner_create(void) {
+void *tree_sitter_simula_external_scanner_create(void) {
     // noop
     return NULL;
 }
 
-void tree_sitter_Simula_external_scanner_destroy(void *payload) {
+void tree_sitter_simula_external_scanner_destroy(void *payload) {
 // noop
 }
 
-unsigned tree_sitter_Simula_external_scanner_serialize(
+unsigned tree_sitter_simula_external_scanner_serialize(
   void *payload,
   char *buffer
 ) {
@@ -24,7 +24,7 @@ unsigned tree_sitter_Simula_external_scanner_serialize(
   return 0;
 }
 
-void tree_sitter_Simula_external_scanner_deserialize(
+void tree_sitter_simula_external_scanner_deserialize(
   void *payload,
   const char *buffer,
   unsigned length
@@ -85,7 +85,7 @@ static inline bool is_terminal(str *word) {
     return false;
 }
 
-bool tree_sitter_Simula_external_scanner_scan(
+bool tree_sitter_simula_external_scanner_scan(
   void *payload,
   TSLexer *lexer,
   const bool *valid_symbols

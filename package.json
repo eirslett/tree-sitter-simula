@@ -38,8 +38,8 @@
   ],
   "tree-sitter": [
     {
-      "scope": "source.Simula",
-      "injection-regex": "^Simula$"
+      "scope": "source.simula",
+      "injection-regex": "^simula$"
     }
   ]
 }
